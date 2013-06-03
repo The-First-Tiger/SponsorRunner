@@ -3,12 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Data.SqlClient;
-    using System.Windows.Documents;
-    using System.Windows.Media;
+    using System.Linq;
 
     public class Database
     {
-        private string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=C:\Users\Alexander\SponsorRunnerOwnDbHandler.mdf;Integrated Security=True";
+        private string ConnectionString = @"Data Source=(LocalDB)\v11.0;AttachDbFilename=<Your_MDF_File_With_Database>";
 
         private Person GetPersonWithoutSponsors(int personId)
         {
@@ -148,6 +147,13 @@
 
             command.ExecuteNonQuery();
 
+            var sponsorIds = this.GetAllSponsorIdsInDatabase(person.PersonId);
+
+            foreach (var sponsorId in sponsorIds.Where(sponsorId => !person.Sponsors.Select(sponsor => sponsor.SponsorId).Contains(sponsorId)))
+            {
+                this.DeleteSponsor(sponsorId, person.PersonId);
+            }
+
             foreach (var runnerSponsor in person.Sponsors)
             {
                 if (DoesRunnerSponsorExists(runnerSponsor))
@@ -169,6 +175,49 @@
 
             connection.Close();
         }
+
+        private void DeleteSponsor(int sponsorId, int runnerId)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var command =
+                    new SqlCommand(
+                        "DELETE FROM runnersponsor WHERE runnerid = " + runnerId + " AND sponsorid = " + sponsorId,
+                        connection);
+
+                command.ExecuteNonQuery();
+
+                command = new SqlCommand("DELETE FROM person WHERE personid = " + sponsorId, connection);
+
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public List<int> GetAllSponsorIdsInDatabase(int personId)
+        {
+            using (var connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+
+                var command = new SqlCommand(
+                    "SELECT sponsorid FROM runnersponsor WHERE runnerid =" + personId,
+                    connection);
+
+                var sponsorIds = new List<int>();
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        sponsorIds.Add((int)reader[0]);
+                    }
+                }
+
+                return sponsorIds;
+            }
+        } 
 
         private void CreateRunnerSponsor(RunnerSponsor runnerSponsor)
         {

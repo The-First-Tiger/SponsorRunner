@@ -1,0 +1,53 @@
+﻿<Window x:Class="SponsorRunner_Own_Database_Handling.DetailWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DetailWindow" Height="350" Width="525" DataContext="{Binding RelativeSource={RelativeSource Self}}" >
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="MinWidth" Value="100" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Width" Value="100" />
+        </Style>
+    </Window.Resources>
+    <StackPanel>
+        <StackPanel Margin="10">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Vorname" />
+                <TextBox Text="{Binding Runner.Vorname}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Nachname" />
+                <TextBox Text="{Binding Runner.Nachname}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Straße" />
+                <TextBox Text="{Binding Runner.Strasse}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="PLZ" />
+                <TextBox Text="{Binding Runner.Plz}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Ort" />
+                <TextBox Text="{Binding Runner.Ort}" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Margin="10">
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Runner.Sponsors}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Vorname" Binding="{Binding Sponsor.Vorname}" />
+                    <DataGridTextColumn Header="Nachname" Binding="{Binding Sponsor.Nachname}" />
+                    <DataGridTextColumn Header="Strasse" Binding="{Binding Sponsor.Strasse}" />
+                    <DataGridTextColumn Header="Plz" Binding="{Binding Sponsor.Plz}" />
+                    <DataGridTextColumn Header="Ort" Binding="{Binding Sponsor.Ort}" />
+                    <DataGridTextColumn Header="Betrag" Binding="{Binding Betrag}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel>
+            <Button Click="AddNewSponsor" Width="150" Height="30" Content="Neuen Person hinzufügen" />
+            <Button Click="SaveButtonClick" Width="100" Height="30" Content="Speichern" />
+        </StackPanel>
+    </StackPanel>
+</Window>
