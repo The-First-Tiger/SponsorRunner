@@ -17,6 +17,7 @@ namespace SponsorRunner.Migrations
                 person => person.Id,
                 new Person
                 {
+                    Id = 1,
                     Vorname = "Max",
                     Nachname = "Mustermann",
                     Ort = "Musterstadt",
