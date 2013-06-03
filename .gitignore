@@ -152,3 +152,10 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+/SponsorRunner Own Database Handling/SponsorRunner Own Database Handling.csproj
+/SponsorRunner Own Database Handling/SponsorRunnerOwnDatabase.mdf
+/SponsorRunner Own Database Handling/SponsorRunnerOwnDatabaseDataSet.Designer.cs
+/SponsorRunner Own Database Handling/SponsorRunnerOwnDatabaseDataSet.xsc
+/SponsorRunner Own Database Handling/SponsorRunnerOwnDatabaseDataSet.xsd
+/SponsorRunner Own Database Handling/SponsorRunnerOwnDatabaseDataSet.xss
+/SponsorRunner Own Database Handling/SponsorRunnerOwnDatabase_log.ldf
