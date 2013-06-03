@@ -1,7 +1,7 @@
 ﻿<Application x:Class="SponsorRunner_Own_Database_Handling.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml">
+             StartupUri="DetailWindow.xaml">
     <Application.Resources>
          
     </Application.Resources>
