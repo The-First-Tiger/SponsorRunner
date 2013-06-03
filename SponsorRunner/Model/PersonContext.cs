@@ -1,6 +1,7 @@
 ﻿namespace SponsorRunner.Model
 {
     using System.Data.Entity;
+    using System.Windows.Documents;
 
     public class PersonContext : DbContext
     {
@@ -8,7 +9,11 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Person>().HasMany(person => person.Sponsors).WithMany();
+            modelBuilder.Entity<RunnerSponsor>()
+                .HasRequired(runnerSponsor => runnerSponsor.Sponsor)
+                .WithMany()
+                .HasForeignKey(sponsor => sponsor.SponsorId)
+                .WillCascadeOnDelete(false);
         }
     }    
 }

@@ -34,13 +34,30 @@
             InitializeComponent();
 
             context = new PersonContext();
-                
-            this.Runner = context.Persons.Include("Sponsors").FirstOrDefault(person => person.Id == 1);            
+ 
+            this.Runner = context.Persons.FirstOrDefault(person => person.Id == 1);            
         }
 
         private void SaveButtonClick(object sender, RoutedEventArgs e)
         {
             context.SaveChanges();
+        }
+
+        private void AddNewSponsor(object sender, RoutedEventArgs e)
+        {
+            var addPersonView = new AddPersonView();
+            addPersonView.ShowDialog();
+
+            if (addPersonView.DialogResult.HasValue && addPersonView.DialogResult.Value)
+            {
+                context.Persons.Add(addPersonView.Person);
+                this.Runner.Sponsors.Add(new RunnerSponsor
+                                         {
+                                             Betrag = 0,
+                                             Runner = this.Runner,
+                                             Sponsor = addPersonView.Person
+                                         });
+            }
         }
     }
 }

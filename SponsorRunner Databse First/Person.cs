@@ -11,12 +11,13 @@ namespace SponsorRunner_Databse_First
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Collections.ObjectModel;
+
     public partial class Person
     {
         public Person()
         {
-            this.RunnerSponsor = new HashSet<RunnerSponsor>();
+            this.RunnerSponsor = new ObservableCollection<RunnerSponsor>();
             this.RunnerSponsor1 = new HashSet<RunnerSponsor>();
         }
     
@@ -27,7 +28,7 @@ namespace SponsorRunner_Databse_First
         public string ort { get; set; }
         public string plz { get; set; }
     
-        public virtual ICollection<RunnerSponsor> RunnerSponsor { get; set; }
+        public virtual ObservableCollection<RunnerSponsor> RunnerSponsor { get; set; }
         public virtual ICollection<RunnerSponsor> RunnerSponsor1 { get; set; }
     }
 }

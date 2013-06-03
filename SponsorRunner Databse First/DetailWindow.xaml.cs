@@ -15,8 +15,6 @@ using System.Windows.Shapes;
 
 namespace SponsorRunner_Databse_First
 {
-    using SponsorRunner_Databse_First.ViewModel;
-
     /// <summary>
     /// Interaction logic for DetailWindow.xaml
     /// </summary>
@@ -24,15 +22,15 @@ namespace SponsorRunner_Databse_First
     {
         public static readonly DependencyProperty RunnerProperty = DependencyProperty.Register(
             "Runner",
-            typeof(Runner),
+            typeof(Person),
             typeof(DetailWindow),
             new PropertyMetadata());
 
-        public Runner Runner
+        public Person Runner
         {
             get
             {
-                return (Runner)this.GetValue(RunnerProperty);
+                return (Person)this.GetValue(RunnerProperty);
             }
             set
             {
@@ -40,13 +38,37 @@ namespace SponsorRunner_Databse_First
             }
         }
 
+        private PersonEntities context;
+
         public DetailWindow()
         {
             InitializeComponent();
 
-            var context = new PersonEntities();
+            context = new PersonEntities();
 
-            this.Runner = new Runner(context.Person.FirstOrDefault(person => person.PeronId == 1));
+            this.Runner = context.Person.FirstOrDefault(person => person.PeronId == 1);
+        }
+
+        private void SaveButtonClick(object sender, RoutedEventArgs e)
+        {
+            context.SaveChanges();
+        }
+
+        private void AddNewSponsorButtonClick(object sender, RoutedEventArgs e)
+        {
+            var addPersonView = new AddPersonView();
+            addPersonView.ShowDialog();
+
+            if (addPersonView.DialogResult.HasValue && addPersonView.DialogResult.Value)
+            {
+                context.Person.Add(addPersonView.Person);
+                this.Runner.RunnerSponsor.Add(new RunnerSponsor
+                {
+                    Betrag = 0,
+                    Person = this.Runner,
+                    Person1 = addPersonView.Person
+                });
+            }
         }
     }
 }

@@ -21,17 +21,15 @@
 
         private string ort;
 
-        private ObservableCollection<Person> sponsors;
-
-        private int betrag;
+        private ObservableCollection<RunnerSponsor> sponsors;
 
         public Person()
         {
-            Sponsors = new ObservableCollection<Person>();
+            Sponsors = new ObservableCollection<RunnerSponsor>();
         }
 
         [Key]        
-        public int Id
+        public virtual int Id
         {
             get
             {
@@ -49,7 +47,7 @@
         }
 
         [NotNull]
-        public string Vorname
+        public virtual string Vorname
         {
             get
             {
@@ -67,7 +65,7 @@
         }
 
         [NotNull]
-        public string Nachname
+        public virtual string Nachname
         {
             get
             {
@@ -85,7 +83,7 @@
         }
 
         [NotNull]
-        public string Strasse
+        public virtual string Strasse
         {
             get
             {
@@ -103,7 +101,7 @@
         }
 
         [NotNull]
-        public string Plz
+        public virtual string Plz
         {
             get
             {
@@ -121,7 +119,7 @@
         }
 
         [NotNull]
-        public string Ort
+        public virtual string Ort
         {
             get
             {
@@ -139,25 +137,7 @@
         }
 
         [CanBeNull]
-        public int Betrag
-        {
-            get
-            {
-                return this.betrag;
-            }
-            set
-            {
-                if (value == this.betrag)
-                {
-                    return;
-                }
-                this.betrag = value;
-                this.OnPropertyChanged();
-            }
-        }
-
-        [CanBeNull]
-        public ObservableCollection<Person> Sponsors
+        public virtual ObservableCollection<RunnerSponsor> Sponsors
         {
             get
             {

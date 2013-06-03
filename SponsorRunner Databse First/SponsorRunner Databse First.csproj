@@ -60,6 +60,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddPersonView.xaml.cs">
+      <DependentUpon>AddPersonView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Person.cs">
       <DependentUpon>Persons.tt</DependentUpon>
     </Compile>
@@ -72,8 +75,10 @@
     <Compile Include="RunnerSponsor.cs">
       <DependentUpon>Persons.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\Runner.cs" />
-    <Compile Include="ViewModel\Sponsor.cs" />
+    <Page Include="AddPersonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DetailWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

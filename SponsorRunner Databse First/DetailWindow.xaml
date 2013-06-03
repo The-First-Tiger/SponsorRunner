@@ -14,30 +14,40 @@
         <StackPanel Margin="10">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Vorname" />
-                <TextBox Text="{Binding Runner.Vorname}" />
+                <TextBox Text="{Binding Runner.vorname}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Nachname" />
-                <TextBox Text="{Binding Runner.Nachname}" />
+                <TextBox Text="{Binding Runner.nachname}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Straße" />
-                <TextBox Text="{Binding Runner.Strasse}" />
+                <TextBox Text="{Binding Runner.strasse}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="PLZ" />
-                <TextBox Text="{Binding Runner.Plz}" />
+                <TextBox Text="{Binding Runner.plz}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Ort" />
-                <TextBox Text="{Binding Runner.Ort}" />
+                <TextBox Text="{Binding Runner.ort}" />
             </StackPanel>
         </StackPanel>
         <StackPanel Margin="10">
-            <DataGrid ItemsSource="{Binding Runner.Sponsors}"/>
+            <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Runner.RunnerSponsor}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Vorname" Binding="{Binding Person1.vorname}" />
+                    <DataGridTextColumn Header="Nachname" Binding="{Binding Person1.nachname}" />
+                    <DataGridTextColumn Header="Strasse" Binding="{Binding Person1.strasse}" />
+                    <DataGridTextColumn Header="Plz" Binding="{Binding Person1.plz}" />
+                    <DataGridTextColumn Header="Ort" Binding="{Binding Person1.ort}" />
+                    <DataGridTextColumn Header="Betrag" Binding="{Binding Betrag}" />
+                </DataGrid.Columns>    
+            </DataGrid>
         </StackPanel>
         <StackPanel>
-            <!--<Button Click="SaveButtonClick" Width="100" Height="30" Content="Speichern" />-->
+            <Button Click="AddNewSponsorButtonClick" Width="150" Height="30" Content="Neuen Sponsor hinzufügen" />
+            <Button Click="SaveButtonClick" Width="100" Height="30" Content="Speichern" />
         </StackPanel>
     </StackPanel>
 </Window>

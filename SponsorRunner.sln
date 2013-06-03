@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SponsorRunner", "SponsorRun
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SponsorRunner Databse First", "SponsorRunner Databse First\SponsorRunner Databse First.csproj", "{690EF96E-E337-45AB-92C2-48FAA83EE8EC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SponsorRunner Own Database Handling", "SponsorRunner Own Database Handling\SponsorRunner Own Database Handling.csproj", "{E572484A-6331-4CE7-9E4D-6C45EAC4C419}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{690EF96E-E337-45AB-92C2-48FAA83EE8EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{690EF96E-E337-45AB-92C2-48FAA83EE8EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{690EF96E-E337-45AB-92C2-48FAA83EE8EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E572484A-6331-4CE7-9E4D-6C45EAC4C419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E572484A-6331-4CE7-9E4D-6C45EAC4C419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E572484A-6331-4CE7-9E4D-6C45EAC4C419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E572484A-6331-4CE7-9E4D-6C45EAC4C419}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
