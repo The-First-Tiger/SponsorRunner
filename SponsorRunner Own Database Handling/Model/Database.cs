@@ -8,7 +8,7 @@
 
     public class Database
     {
-        private string ConnectionString = "Data Source=(LocalDB)\v11.0;AttachDbFilename=\"C:\\Users\\Alexander\\Documents\\Visual Studio 2012\\Projects\\SponsorRunner\\SponsorRunner Own Database Handling\\SponsorRunnerOwnDatabase.mdf\";Integrated Security=True";
+        private string ConnectionString = "";
 
         public Person GetPerson(int personId)
         {
