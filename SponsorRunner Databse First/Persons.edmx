@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PeronModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="PeronModelStoreContainer">
+          <EntitySet Name="Person" EntityType="PeronModel.Store.Person" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RunnerSponsor" EntityType="PeronModel.Store.RunnerSponsor" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_RunnerSponsor_Person" Association="PeronModel.Store.FK_RunnerSponsor_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="RunnerSponsor" EntitySet="RunnerSponsor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunnerSponsor_Person1" Association="PeronModel.Store.FK_RunnerSponsor_Person1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="RunnerSponsor" EntitySet="RunnerSponsor" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PeronId" />
+          </Key>
+          <Property Name="PeronId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="vorname" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="nachname" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="strasse" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ort" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="plz" Type="char" Nullable="false" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="RunnerSponsor">
+          <Key>
+            <PropertyRef Name="RunnerId" />
+            <PropertyRef Name="SponsorId" />
+          </Key>
+          <Property Name="RunnerId" Type="int" Nullable="false" />
+          <Property Name="SponsorId" Type="int" Nullable="false" />
+          <Property Name="Betrag" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_RunnerSponsor_Person">
+          <End Role="Person" Type="PeronModel.Store.Person" Multiplicity="1" />
+          <End Role="RunnerSponsor" Type="PeronModel.Store.RunnerSponsor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PeronId" />
+            </Principal>
+            <Dependent Role="RunnerSponsor">
+              <PropertyRef Name="RunnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunnerSponsor_Person1">
+          <End Role="Person" Type="PeronModel.Store.Person" Multiplicity="1" />
+          <End Role="RunnerSponsor" Type="PeronModel.Store.RunnerSponsor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PeronId" />
+            </Principal>
+            <Dependent Role="RunnerSponsor">
+              <PropertyRef Name="SponsorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PeronModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PersonEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Person" EntityType="PeronModel.Person" />
+          <EntitySet Name="RunnerSponsor" EntityType="PeronModel.RunnerSponsor" />
+          <AssociationSet Name="FK_RunnerSponsor_Person" Association="PeronModel.FK_RunnerSponsor_Person">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="RunnerSponsor" EntitySet="RunnerSponsor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RunnerSponsor_Person1" Association="PeronModel.FK_RunnerSponsor_Person1">
+            <End Role="Person" EntitySet="Person" />
+            <End Role="RunnerSponsor" EntitySet="RunnerSponsor" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="PeronId" />
+          </Key>
+          <Property Type="Int32" Name="PeronId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="vorname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="nachname" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="strasse" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ort" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="plz" Nullable="false" MaxLength="5" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="RunnerSponsor" Relationship="PeronModel.FK_RunnerSponsor_Person" FromRole="Person" ToRole="RunnerSponsor" />
+          <NavigationProperty Name="RunnerSponsor1" Relationship="PeronModel.FK_RunnerSponsor_Person1" FromRole="Person" ToRole="RunnerSponsor" />
+        </EntityType>
+        <EntityType Name="RunnerSponsor">
+          <Key>
+            <PropertyRef Name="RunnerId" />
+            <PropertyRef Name="SponsorId" />
+          </Key>
+          <Property Type="Int32" Name="RunnerId" Nullable="false" />
+          <Property Type="Int32" Name="SponsorId" Nullable="false" />
+          <Property Type="Int32" Name="Betrag" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="PeronModel.FK_RunnerSponsor_Person" FromRole="RunnerSponsor" ToRole="Person" />
+          <NavigationProperty Name="Person1" Relationship="PeronModel.FK_RunnerSponsor_Person1" FromRole="RunnerSponsor" ToRole="Person" />
+        </EntityType>
+        <Association Name="FK_RunnerSponsor_Person">
+          <End Type="PeronModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="PeronModel.RunnerSponsor" Role="RunnerSponsor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PeronId" />
+            </Principal>
+            <Dependent Role="RunnerSponsor">
+              <PropertyRef Name="RunnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RunnerSponsor_Person1">
+          <End Type="PeronModel.Person" Role="Person" Multiplicity="1" />
+          <End Type="PeronModel.RunnerSponsor" Role="RunnerSponsor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="PeronId" />
+            </Principal>
+            <Dependent Role="RunnerSponsor">
+              <PropertyRef Name="SponsorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PeronModelStoreContainer" CdmEntityContainer="PersonEntities">
+          <EntitySetMapping Name="Person">
+            <EntityTypeMapping TypeName="PeronModel.Person">
+              <MappingFragment StoreEntitySet="Person">
+                <ScalarProperty Name="plz" ColumnName="plz" />
+                <ScalarProperty Name="ort" ColumnName="ort" />
+                <ScalarProperty Name="strasse" ColumnName="strasse" />
+                <ScalarProperty Name="nachname" ColumnName="nachname" />
+                <ScalarProperty Name="vorname" ColumnName="vorname" />
+                <ScalarProperty Name="PeronId" ColumnName="PeronId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RunnerSponsor">
+            <EntityTypeMapping TypeName="PeronModel.RunnerSponsor">
+              <MappingFragment StoreEntitySet="RunnerSponsor">
+                <ScalarProperty Name="Betrag" ColumnName="Betrag" />
+                <ScalarProperty Name="SponsorId" ColumnName="SponsorId" />
+                <ScalarProperty Name="RunnerId" ColumnName="RunnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
